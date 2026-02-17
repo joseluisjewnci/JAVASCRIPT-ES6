@@ -1,4 +1,4 @@
-// tipos de datos  typeof
+// A. tipos de datos  typeof
 
 // string, number, boolean, null, undefined, symbol, bigint
 
