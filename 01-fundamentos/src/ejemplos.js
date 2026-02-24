@@ -58,9 +58,8 @@ if (direccion === undefined) {
  * este detecta valores que aun no existen
  */
 
-// ==============================
+
 // ESTRUCTURAS DE CONTROL DE FLUJO
-// ==============================
 
 // 6. Array + for
 const notas = [3, 4, 5];
@@ -72,6 +71,10 @@ for (let i = 0; i < notas.length; i++) {
 
 console.log("6) Total de notas:", sumaNotas);
 
+/**
+ * ayuda a trabajar con lista de dattos
+ */
+
 // 7. Objeto + if
 const usuario = {
   nombre: "Ana",
@@ -81,6 +84,10 @@ const usuario = {
 if (usuario.activo) {
   console.log("7) Usuario activo");
 }
+/**
+ * modela información más compleja.
+ */
+
 
 // 8. Switch
 const dia = 3;
@@ -99,6 +106,10 @@ switch (dia) {
     console.log("8) Día no válido");
 }
 
+/**
+ * ideal cuando tienes muchas opciones posibles
+ */
+
 // 9. While
 let contadorEjemplo = 1;
 
@@ -107,12 +118,20 @@ while (contadorEjemplo <= 5) {
   contadorEjemplo++;
 }
 
+/**
+ * este se usa cuando no sabes cuantas veces se va arepetir algo 
+ */
+
 // 10. Función + validación de tipo
 function esNumero(valor) {
   return typeof valor === "number"
     ? "Es un número"
     : "No es un número";
 }
+
+/**
+ * Sirve para reutilizar lógica y evitar repetir código.
+ */
 
 console.log("10)", esNumero(10));
 console.log("10)", esNumero("10"));
