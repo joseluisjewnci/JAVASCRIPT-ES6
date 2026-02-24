@@ -31,6 +31,9 @@ function validarMonto(monto) {
     return numero;
 } 
 
+/**
+ * lo anterior verifica que los montos ingresados en el sistema sean correctos
+ */
 
 
 // MODELAR DATOS DE INGRESOS Y GASTOS
@@ -40,7 +43,7 @@ const ingresos = [
 ];
 
 /**
- * lo anteriro crea una lista de ingresos 
+ * lo anterior es donde registra el dinero que entra 
  */
 
 const gastos = [
@@ -48,6 +51,10 @@ const gastos = [
     { concepto: "Comida", monto: 800000 },
     { concepto: "Transporte", monto: 300000 },
 ];
+
+/** 
+ * es donde re registan los gastos 
+*/
 
 
 // CALCULAR TOTALES
@@ -60,9 +67,14 @@ function calcularTotal(items) {
     return total;
 }
 
+/**
+ * hace la suma general de todo el dinero, asegurándose que cada valor sea valido antes de sumarlo
+ */
+
 const totalIngresos = calcularTotal(ingresos);
 const totalGastos = calcularTotal(gastos);
 const balance = totalIngresos - totalGastos;
+
 
 // CLASIFICAR ESTADO FINANCIERO
 
@@ -75,6 +87,10 @@ function getEstadoFinanciero(balance) {
         return "DEFICIT";
     }
 }
+
+/**
+* toma el resultado del cálculo y lo traduce en el estado financiero final del mes
+*/
 
 function recomendacion(estado) {
     switch (estado) {
@@ -101,3 +117,7 @@ console.log(`Balance: ${balance}`);
 console.log(`Estado Financiero: ${getEstadoFinanciero(balance)}`);
 console.log(`Recomendación: ${recomendacion(getEstadoFinanciero(balance))}`);
 console.groupEnd();
+
+/**
+  * mostrar el reporte final del presupuesto en la consola, organizando la información de manera visual y entendible
+  */

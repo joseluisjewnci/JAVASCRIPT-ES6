@@ -4,7 +4,10 @@
 
 // no primitivos: object, array, function
 
-"use strict"; // modo estricto qque ayuda a evitar errores comunes, como variables no declaradas
+"use strict";
+
+
+ // modo estricto qque ayuda a evitar errores comunes, como variables no declaradas
 
 const s = "hola mundo"; // string
 const n = 42; // number
@@ -114,3 +117,112 @@ console.log(a ?? c); // "default" (a es null)
 //  a diferencia de || que considera falsy (como 0, "", false) como valores que también activan el valor predeterminado.
 
 console.log(0 || "default"); // "default" (0 es falsy)
+
+// D. Template strings 
+
+const ingreso = 5000000;
+const gasto = 450000;
+const balance = ingreso - gasto; 
+
+const mensaje = `El balance es: ${balance}`; // Usamos ${} para insertar la expresión balance dentro de la cadena
+console.log(mensaje); // Imprime: El balance es: 4550000    
+
+console.log(`El ingreso es: ${ingreso}, el gasto es: ${gasto}, y el balance es: ${balance}`);
+
+
+// F. CONTROL DE FLUJO: if, else, switch, for, while, do while
+// EJEMPLO IF ELSE
+
+const edad = 18;
+
+if (edad >= 18) {
+    console.log("Eres mayor de edad");
+} else {
+    console.log("Eres menor de edad");
+}
+
+console.log(edad >= 18 ? "Eres mayor de edad" : "Eres menor de edad"); // operador ternario
+
+// for loop  SE USA CUANDO SABES CUANTAS VECES QUIERES REPETIR UN BLOQUE DE CÓDIGOS
+
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+const gastos = [100, 200, 300];
+let totalGastos = 0;
+
+for (let i = 0; i < gastos.length; i++) {
+    totalGastos += gastos[i]; // totalGastos = totalGastos + gastos[i];
+}
+
+console.log(`Total de gastos: ${totalGastos}`);
+
+
+//WHILE SE USA CUANDO NO SABES CUANTAS VECES QUIERES REPETIR UN BLOQUE DE CÓDIGOS
+
+let contador = 0;
+while (contador < 5) {
+    console.log(contador);
+    contador++;
+}
+
+//FUNCIONES , LAS FUNCIONES SON BLOQUES DE CÓDIGOS QUE REALIZAN UNA TAREA ESPECÍFICA Y PUEDEN SER REUTILIZADOS
+
+function saludar(nombre) {
+    return `Hola, ${nombre}!`;
+}
+
+console.log(saludar("Alice"));
+
+// ERRORES  Y NANEJO BASICO DE ERRORES
+
+
+
+try {
+    console.log(dividir(10, 0));
+} catch (error) {
+    console.error("Ocurrió un error:", error.message); // Manejo del error
+}
+
+
+// funcion dividir con try catch dentro de la funcion
+
+function dividirConManejo(a, b) {
+  try {
+    // Validaciones básicas
+    if (typeof a !== "number" || typeof b !== "number" || Number.isNaN(a) || Number.isNaN(b)) {
+      throw new Error("Ambos valores deben ser números válidos");
+    }
+
+    if (b === 0) {
+      throw new Error("No se puede dividir por cero");
+    }
+
+    // Si todo está OK, retornamos la división
+    return a / b;
+
+  } catch (error) {
+    console.error("Ocurrió un error:", error.message);
+    return null; // Indica que no se pudo realizar la división
+  }
+}
+
+console.log(dividirConManejo(10, 0));   // null
+console.log(dividirConManejo(10, 2));   // 5
+console.log(dividirConManejo("10", 2)); // null
+
+
+// deouracion de funciones
+
+// conos.table.log() es una función que se utiliza para imprimir mensajes en la consola del navegador o del entorno de desarrollo. 
+// Es muy útil para depurar código y verificar el valor de variables en diferentes puntos de la ejecución.
+
+const report= { ingreso: 5000000, gasto: 450000, balance: 4550000 };
+console.table(report); // Imprime el objeto report en formato de tabla en la consola
+
+console.group("Reporte financiero"); // Inicia un grupo en la consola
+console.log(`Ingreso: ${report.ingreso}`);
+console.log(`Gasto: ${report.gasto}`);
+console.log(`Balance: ${report.balance}`);
+console.groupEnd(); // Finaliza el grupo en la consola
