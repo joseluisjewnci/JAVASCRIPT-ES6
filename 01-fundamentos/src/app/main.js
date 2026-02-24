@@ -1,135 +1,145 @@
-Module Program
+const readline = require('readline');
 
-    Sub Main()
+// Crear interfaz de lectura de terminal
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-        Try
-            Console.WriteLine("===== CONVERSOR DE UNIDADES =====")
-            Console.WriteLine("Seleccione el tipo de conversión:")
-            Console.WriteLine("1. Temperatura")
-            Console.WriteLine("2. Longitud")
-            Console.Write("Opción: ")
+// Función principal
+function main() {
+  console.log("===== CONVERSOR DE UNIDADES =====");
+  console.log("Soporta: Temperatura (C, F, K), Longitud (m, km, cm)");
+  console.log("Formato: value from to (Ej: 100 C F)");
+  console.log("Escriba 'salir' para terminar.");
 
-            Dim tipoInput As String = Console.ReadLine()
-            Dim tipo As Integer
+  rl.prompt();
+  rl.on('line', (input) => {
+    const line = input.trim();
 
-            ' Validar opción principal
-            If Not Integer.TryParse(tipoInput, tipo) Or (tipo <> 1 And tipo <> 2) Then
-                MostrarError("Tipo de conversión no válido.")
-                Return
-            End If
+    if (line.toLowerCase() === 'salir') {
+      console.log("Programa finalizado correctamente.");
+      rl.close();
+      return;
+    }
 
-            If tipo = 1 Then
-                MenuTemperatura()
-            Else
-                MenuLongitud()
-            End If
+    const partes = line.split(' ');
 
-        Catch ex As Exception
-            MostrarError("Error inesperado: " & ex.Message)
-        End Try
+    if (partes.length !== 3) {
+      console.log("ERROR: Formato inválido. Debe ser: value from to");
+      rl.prompt();
+      return;
+    }
 
-        Console.WriteLine(vbCrLf & "Programa finalizado correctamente.")
-        Console.ReadKey()
+    const valorStr = partes[0];
+    const fromUnidad = partes[1].toUpperCase();
+    const toUnidad = partes[2].toUpperCase();
 
-    End Sub
+    const valor = Number(valorStr);
 
-    ' ================= TEMPERATURA =================
-    Sub MenuTemperatura()
+    // Validar número finito
+    if (isNaN(valor) || !isFinite(valor)) {
+      console.log(`ERROR: Valor inválido: ${valorStr}`);
+      rl.prompt();
+      return;
+    }
 
-        Console.WriteLine(vbCrLf & "Conversiones disponibles:")
-        Console.WriteLine("1. Celsius a Fahrenheit")
-        Console.WriteLine("2. Fahrenheit a Celsius")
-        Console.WriteLine("3. Celsius a Kelvin")
-        Console.Write("Opción: ")
+    const tempUnidades = ["C", "F", "K"];
+    const longUnidades = ["M", "KM", "CM"];
 
-        Dim opcionInput As String = Console.ReadLine()
-        Dim opcion As Integer
+    let categoriaFrom = "";
+    let categoriaTo = "";
 
-        If Not Integer.TryParse(opcionInput, opcion) Or opcion < 1 Or opcion > 3 Then
-            MostrarError("Conversión de temperatura no válida.")
-            Return
-        End If
+    if (tempUnidades.includes(fromUnidad)) categoriaFrom = "temp";
+    if (tempUnidades.includes(toUnidad)) categoriaTo = "temp";
+    if (longUnidades.includes(fromUnidad)) categoriaFrom = "long";
+    if (longUnidades.includes(toUnidad)) categoriaTo = "long";
 
-        Dim valor As Double = LeerNumero()
+    // Validar unidades soportadas
+    if (categoriaFrom === "" || categoriaTo === "") {
+      console.log(`ERROR: Unidad no soportada: ${fromUnidad} o ${toUnidad}`);
+      rl.prompt();
+      return;
+    }
 
-        If Double.IsNaN(valor) Or Double.IsInfinity(valor) Then
-            MostrarError("Número no válido o infinito.")
-            Return
-        End If
+    // Validar categorías
+    if (categoriaFrom !== categoriaTo) {
+      console.log(`ERROR: Categorías incompatibles: ${fromUnidad} a ${toUnidad}`);
+      rl.prompt();
+      return;
+    }
 
-        Dim resultado As Double
+    // Conversión
+    let resultado = 0;
 
-        Select Case opcion
-            Case 1 ' C → F
-                resultado = (valor * 9 / 5) + 32
-            Case 2 ' F → C
-                resultado = (valor - 32) * 5 / 9
-            Case 3 ' C → K
-                resultado = valor + 273.15
-        End Select
+    if (categoriaFrom === "temp") {
+      resultado = convertirTemperatura(valor, fromUnidad, toUnidad);
+    } else {
+      resultado = convertirLongitud(valor, fromUnidad, toUnidad);
+    }
 
-        Console.WriteLine("Resultado: " & Math.Round(resultado, 2))
+    console.log(`Resultado: ${resultado.toFixed(2)} ${toUnidad}`);
+    rl.prompt();
+  });
+}
 
-    End Sub
+// ================== FUNCIONES ==================
+function convertirTemperatura(valor, fromU, toU) {
+  if (fromU === toU) return valor;
 
-    ' ================= LONGITUD =================
-    Sub MenuLongitud()
+  let res = valor;
 
-        Console.WriteLine(vbCrLf & "Conversiones disponibles:")
-        Console.WriteLine("1. Metros a Kilómetros")
-        Console.WriteLine("2. Kilómetros a Metros")
-        Console.WriteLine("3. Centímetros a Metros")
-        Console.Write("Opción: ")
+  // Convertir primero a Celsius
+  switch(fromU) {
+    case "F":
+      res = (valor - 32) * 5 / 9;
+      break;
+    case "K":
+      res = valor - 273.15;
+      break;
+  }
 
-        Dim opcionInput As String = Console.ReadLine()
-        Dim opcion As Integer
+  // Convertir a destino
+  switch(toU) {
+    case "C":
+      return res;
+    case "F":
+      return (res * 9 / 5) + 32;
+    case "K":
+      return res + 273.15;
+  }
 
-        If Not Integer.TryParse(opcionInput, opcion) Or opcion < 1 Or opcion > 3 Then
-            MostrarError("Conversión de longitud no válida.")
-            Return
-        End If
+  return res;
+}
 
-        Dim valor As Double = LeerNumero()
+function convertirLongitud(valor, fromU, toU) {
+  let res = valor;
 
-        If Double.IsNaN(valor) Or Double.IsInfinity(valor) Then
-            MostrarError("Número no válido o infinito.")
-            Return
-        End If
+  // Convertir a metros
+  switch(fromU) {
+    case "KM":
+      res = valor * 1000;
+      break;
+    case "CM":
+      res = valor / 100;
+      break;
+    case "M":
+      res = valor;
+      break;
+  }
 
-        Dim resultado As Double
+  // Convertir a destino
+  switch(toU) {
+    case "M":
+      return res;
+    case "KM":
+      return res / 1000;
+    case "CM":
+      return res * 100;
+  }
 
-        Select Case opcion
-            Case 1 ' m → km
-                resultado = valor / 1000
-            Case 2 ' km → m
-                resultado = valor * 1000
-            Case 3 ' cm → m
-                resultado = valor / 100
-        End Select
+  return res;
+}
 
-        Console.WriteLine("Resultado: " & Math.Round(resultado, 2))
-
-    End Sub
-
-    ' ================= VALIDACIÓN NÚMERO =================
-    Function LeerNumero() As Double
-
-        Console.Write("Ingrese el valor a convertir: ")
-        Dim input As String = Console.ReadLine()
-        Dim numero As Double
-
-        If Not Double.TryParse(input, numero) Then
-            MostrarError("Debe ingresar un número válido.")
-            Return Double.NaN
-        End If
-
-        Return numero
-
-    End Function
-
-    ' ================= MENSAJE ERROR =================
-    Sub MostrarError(mensaje As String)
-        Console.WriteLine(vbCrLf & "ERROR: " & mensaje)
-    End Sub
-
-End Module
+// Iniciar programa
+main();
