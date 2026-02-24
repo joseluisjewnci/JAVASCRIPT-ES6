@@ -119,5 +119,5 @@ console.log(`Recomendación: ${recomendacion(getEstadoFinanciero(balance))}`);
 console.groupEnd();
 
 /**
-  * mostrar el reporte final del presupuesto en la consola, organizando la información de manera visual y entendible
+  * mustra el reporte final del presupuesto en la consola, organizando debidamente la informacion
   */
