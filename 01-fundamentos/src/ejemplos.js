@@ -9,6 +9,10 @@ if (typeof nombre === "string") {
   console.log("1) El nombre es un texto");
 }
 
+/**
+ * este verifica si una variable es tipo texto
+ */
+
 // 2. Number + if / else
 const edadEjemplo = 16;
 
@@ -18,6 +22,10 @@ if (edadEjemplo >= 18) {
   console.log("2) Menor de edad");
 }
 
+/**
+ * tomar una decicion segun un numero o condicion
+ */
+
 // 3. Boolean + if
 const tieneLicencia = true;
 
@@ -25,11 +33,19 @@ if (tieneLicencia) {
   console.log("3) Puede conducir");
 }
 
+/**
+ * ejecutar algo solo si la condición es true (verdadera )
+ */
+
 // 4. Null + ??
 const telefono = null;
 const telefonoFinal = telefono ?? "No registrado";
 
 console.log("4) Teléfono:", telefonoFinal);
+
+/**
+ * la anterior da un valor por defecto cuando algo es null o undefined
+ */
 
 // 5. Undefined + if
 let direccion;
@@ -37,6 +53,10 @@ let direccion;
 if (direccion === undefined) {
   console.log("5) La dirección no ha sido asignada");
 }
+
+/**
+ * este detecta valores que aun no existen
+ */
 
 // ==============================
 // ESTRUCTURAS DE CONTROL DE FLUJO
