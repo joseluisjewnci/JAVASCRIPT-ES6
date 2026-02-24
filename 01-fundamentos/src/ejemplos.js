@@ -1,3 +1,101 @@
+"use strict";
+
+// EJEMPLOS DE TIPOS DE DATOS
+
+// 1. String + if
+const nombre = "Juan";
+
+if (typeof nombre === "string") {
+  console.log("1) El nombre es un texto");
+}
+
+// 2. Number + if / else
+const edadEjemplo = 16;
+
+if (edadEjemplo >= 18) {
+  console.log("2) Mayor de edad");
+} else {
+  console.log("2) Menor de edad");
+}
+
+// 3. Boolean + if
+const tieneLicencia = true;
+
+if (tieneLicencia) {
+  console.log("3) Puede conducir");
+}
+
+// 4. Null + ??
+const telefono = null;
+const telefonoFinal = telefono ?? "No registrado";
+
+console.log("4) Teléfono:", telefonoFinal);
+
+// 5. Undefined + if
+let direccion;
+
+if (direccion === undefined) {
+  console.log("5) La dirección no ha sido asignada");
+}
+
+// ==============================
+// ESTRUCTURAS DE CONTROL DE FLUJO
+// ==============================
+
+// 6. Array + for
+const notas = [3, 4, 5];
+let sumaNotas = 0;
+
+for (let i = 0; i < notas.length; i++) {
+  sumaNotas += notas[i];
+}
+
+console.log("6) Total de notas:", sumaNotas);
+
+// 7. Objeto + if
+const usuario = {
+  nombre: "Ana",
+  activo: true
+};
+
+if (usuario.activo) {
+  console.log("7) Usuario activo");
+}
+
+// 8. Switch
+const dia = 3;
+
+switch (dia) {
+  case 1:
+    console.log("8) Lunes");
+    break;
+  case 2:
+    console.log("8) Martes");
+    break;
+  case 3:
+    console.log("8) Miércoles");
+    break;
+  default:
+    console.log("8) Día no válido");
+}
+
+// 9. While
+let contadorEjemplo = 1;
+
+while (contadorEjemplo <= 5) {
+  console.log("9) Contador:", contadorEjemplo);
+  contadorEjemplo++;
+}
+
+// 10. Función + validación de tipo
+function esNumero(valor) {
+  return typeof valor === "number"
+    ? "Es un número"
+    : "No es un número";
+}
+
+console.log("10)", esNumero(10));
+console.log("10)", esNumero("10"));
 // A. tipos de datos  typeof
 
 // string, number, boolean, null, undefined, symbol, bigint
