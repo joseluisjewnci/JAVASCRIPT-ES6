@@ -1,5 +1,4 @@
-
-// MAP
+// MAP hola
 
 // Ejemplo 1: Calcular precios con IVA 
 const precios = [100, 250, 80];

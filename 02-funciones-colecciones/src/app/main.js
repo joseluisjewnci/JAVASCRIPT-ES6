@@ -1,4 +1,6 @@
-"use strict";
+"use strict"; 
+
+
 
 // Funciones setup + validaciones base
 //convierte en numero, verifica y convierte el numero
