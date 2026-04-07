@@ -37,3 +37,29 @@ export function groupArrayBy(arr, prop) { // arr es el array de objetos y prop e
         return acc; // devuelve el acumulador actualizado para seguir
     }, {}); // empieza con un objeto vacio donde se van a guardar los grupos
 }
+
+
+
+// EJEMPLOS DE USO
+
+// sumArray → suma de gastos
+const gastos = [500, 1200, 300, 150]; // gastos
+const totalGastos = sumArray(gastos); // llama la funcion sumArray y guarda el resultado en totalGastos
+console.log(totalGastos); // muestra el total de los gastos en la consola
+
+
+// averageArray → promedio de calificaciones
+const calificaciones = [3.5, 4.2, 2.9, 5.0]; // arreglo con notas
+const promedioNotas = averageArray(calificaciones); // llama la funcion averageArray y guarda el promedio
+console.log(promedioNotas); // muestra el promedio en consola
+
+
+// groupArrayBy → agrupar personas por ciudad
+const personas = [ // arreglo de objetos con nombre y ciudad
+  { nombre: "Sofia", ciudad: "Bogotá" }, // primer objeto
+  { nombre: "Carlos", ciudad: "Medellín" }, // segundo objeto
+  { nombre: "Ana", ciudad: "Bogotá" } // tercer objeto
+];
+
+const personasPorCiudad = groupArrayBy(personas, "ciudad"); // agrupa las personas segun la propiedad "ciudad"
+console.log(personasPorCiudad); // muestra el resultado agrupado en consola
