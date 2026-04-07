@@ -42,19 +42,19 @@ export function groupArrayBy(arr, prop) { // arr es el array de objetos y prop e
 
 // EJEMPLOS DE USO
 
-// sumArray → suma de gastos
+// sumArray = suma de gastos
 const gastos = [500, 1200, 300, 150]; // gastos
 const totalGastos = sumArray(gastos); // llama la funcion sumArray y guarda el resultado en totalGastos
 console.log(totalGastos); // muestra el total de los gastos en la consola
 
 
-// averageArray → promedio de calificaciones
+// averageArray = promedio de calificaciones
 const calificaciones = [3.5, 4.2, 2.9, 5.0]; // arreglo con notas
 const promedioNotas = averageArray(calificaciones); // llama la funcion averageArray y guarda el promedio
 console.log(promedioNotas); // muestra el promedio en consola
 
 
-// groupArrayBy → agrupar personas por ciudad
+// groupArrayBy = agrupar personas por ciudad
 const personas = [ // arreglo de objetos con nombre y ciudad
   { nombre: "Sofia", ciudad: "Bogotá" }, // primer objeto
   { nombre: "Carlos", ciudad: "Medellín" }, // segundo objeto
