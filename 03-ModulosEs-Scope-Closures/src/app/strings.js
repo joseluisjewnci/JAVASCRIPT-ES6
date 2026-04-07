@@ -29,3 +29,11 @@ function toNoEmptyString (value, label = 'texto') {
 }
 //funcion slugify, funcion que permite convertir un string a slug ejemplo:
 //  "hola mundo" - "hola-mundo"
+
+export function slugify(text) {
+    return text.toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '');
+}
+console.log(slugify("hola mundo"));
